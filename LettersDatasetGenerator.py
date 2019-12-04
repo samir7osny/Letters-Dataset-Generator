@@ -14,7 +14,7 @@ from glob import glob
 FontsDir = 'Fonts'
 assert os.path.isdir(FontsDir) , 'Please put arabic fonts in the directory /Fonts'
 
-FontsFiles = glob(os.path.join(FontsDir, '*.tff'))
+FontsFiles = glob(os.path.join(FontsDir, '*.ttf'))
 
 DatasetDir = 'LettersDataset'
 
