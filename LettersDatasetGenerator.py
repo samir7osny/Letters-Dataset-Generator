@@ -8,13 +8,14 @@ import arabic_reshaper
 from bidi.algorithm import get_display
 from TextSupport import *
 import cv2
-from tqdm import tqdm
-from glob import glob
 
 FontsDir = 'Fonts'
 assert os.path.isdir(FontsDir) , 'Please put arabic fonts in the directory /Fonts'
 
-FontsFiles = glob(os.path.join(FontsDir, '*.ttf'))
+FontsFiles = []
+for (_, _, FileNames) in os.walk(FontsDir):
+    FontsFiles.extend(FileNames)
+    break
 
 DatasetDir = 'LettersDataset'
 
@@ -29,7 +30,7 @@ Letters = [Letter for Letter in LettersFileText.split('\n') if Letter != '']
 for Index, Letter in enumerate(Letters):
     Letters[Index] = [Input for Input in Letter.split(' ') if Input.replace(' ', '') != '']
 
-for Letter in tqdm(Letters):
+for Letter in Letters:
     integer = int(Letter[0], 16)
 
     if len(Letter[1:]) == 0:
